@@ -107,7 +107,7 @@ export function TestimonialsSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   return (
-    <section id="testimonials" className="relative py-32 overflow-hidden bg-background">
+    <section id="testimonials" className="py-32">
       {/* Premium Background Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Animated gradient orbs */}
@@ -126,7 +126,7 @@ export function TestimonialsSection() {
         <div className="max-w-3xl mx-auto text-center mb-24 animate-in fade-in slide-in-from-bottom-8 duration-1000">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-md mb-8">
             <Sparkles className="w-4 h-4 text-primary animate-spin" />
-            <span className="text-xs font-bold tracking-widest uppercase text-primary">Client Success Stories</span>
+            <span className="text-xs font-bold tracking-widest uppercase text-primary client-badge-boarderless">Client Success Stories</span>
           </div>
 
           <h2 className="text-5xl md:text-7xl font-extrabold tracking-tight text-foreground mb-8 leading-[1.1]">

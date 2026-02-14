@@ -136,7 +136,7 @@ export function Footer() {
             </div>
             <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
               <span>info@inovalogics.com</span>
-              <span>+92 306 6111376</span>
+              <span>+92 306 1161376</span>
               <span>Chungi # 6 Multan Pakistan</span>
             </div>
           </div>

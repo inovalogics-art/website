@@ -1,6 +1,5 @@
 "use client"
-
-import React from "react"
+import React, { useEffect } from "react"
 import {
   Code2,
   Smartphone,
@@ -85,6 +84,37 @@ const valueProps = [
   { icon: Rocket, title: "Long-Term Partnership", desc: "We don’t just deliver projects — we build ongoing growth partnerships." },
 ]
 export function ServicesSection() {
+  useEffect(() => {
+    // Load CSS
+    const link = document.createElement("link")
+    link.href = "https://assets.calendly.com/assets/external/widget.css"
+    link.rel = "stylesheet"
+    document.head.appendChild(link)
+
+    // Load JS
+    const script = document.createElement("script")
+    script.src = "https://assets.calendly.com/assets/external/widget.js"
+    script.async = true
+    document.body.appendChild(script)
+
+    return () => {
+      if (document.head.contains(link)) document.head.removeChild(link)
+      const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]')
+      if (existingScript && document.body.contains(existingScript)) {
+        document.body.removeChild(existingScript)
+      }
+    }
+  }, [])
+
+  const handleBookCall = () => {
+    if (window.Calendly) {
+      window.Calendly.initPopupWidget({
+        url: 'https://calendly.com/inovalogics/30min'
+      });
+    } else {
+      alert("Calendly is still loading. Please try again in a moment.")
+    }
+  }
   return (
     <section id="services" className="py-32">
       {/*  bg-background relative overflow-hidden */}
@@ -139,13 +169,13 @@ export function ServicesSection() {
                 </p> */}
 
                 <div className="flex flex-wrap gap-4">
-                  <Button size="lg" className="rounded-full px-8 py-7 text-base font-bold shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all hover:-translate-y-1">
+                  <Button size="lg" onClick={handleBookCall} className="rounded-full px-8 py-7 text-base font-bold shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all hover:-translate-y-1">
                     Get Started
                   </Button>
-                  <Button variant="outline" size="lg" className="rounded-full px-8 py-7 text-base font-bold border-primary/30 hover:bg-primary/5">
+                  {/* <Button variant="outline" size="lg" className="rounded-full px-8 py-7 text-base font-bold border-primary/30 hover:bg-primary/5">
                     <Play className="w-4 h-4 mr-2" />
                     Watch Demo
-                  </Button>
+                  </Button> */}
                 </div>
               </div>
             </div>
@@ -242,7 +272,10 @@ export function ServicesSection() {
               <p className="text-muted-foreground text-lg mb-10 leading-relaxed">
                 We combine deep technical proficiency with strategic business thinking to deliver solutions that don't just work—they excel. Our commitment to quality and innovation is built into every line of code.
               </p>
-              <Button size="lg" className="rounded-full px-8 py-7 text-base font-bold shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all hover:-translate-y-1">
+              <Button size="lg" onClick={() => {
+                const section = document.getElementById("contact")
+                section?.scrollIntoView({ behavior: "smooth" })
+              }} className="rounded-full px-8 py-7 text-base font-bold shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all hover:-translate-y-1">
                 Start Your Transformation
               </Button>
             </div>

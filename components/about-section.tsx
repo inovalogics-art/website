@@ -1,6 +1,7 @@
 "use client"
 
-import React, { useState } from "react"
+
+import React, { useEffect , useState} from "react"
 import {
   CheckCircle,
   Shield,
@@ -70,6 +71,37 @@ const industries = [
 
 
 export function AboutSection() {
+   useEffect(() => {
+    // Load CSS
+    const link = document.createElement("link")
+    link.href = "https://assets.calendly.com/assets/external/widget.css"
+    link.rel = "stylesheet"
+    document.head.appendChild(link)
+
+    // Load JS
+    const script = document.createElement("script")
+    script.src = "https://assets.calendly.com/assets/external/widget.js"
+    script.async = true
+    document.body.appendChild(script)
+    
+    return () => {
+      if (document.head.contains(link)) document.head.removeChild(link)
+      const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]')
+      if (existingScript && document.body.contains(existingScript)) {
+        document.body.removeChild(existingScript)
+      }
+    }
+  }, [])
+
+  const handleBookCall = () => {
+    if (window.Calendly) {
+      window.Calendly.initPopupWidget({
+        url: 'https://calendly.com/inovalogics/30min'
+      });
+    } else {
+      alert("Calendly is still loading. Please try again in a moment.")
+    }
+  }
   const [hoveredIndustry, setHoveredIndustry] = useState<string | null>(null)
 
   return (
@@ -130,13 +162,13 @@ export function AboutSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 pt-4">
-              <Button size="lg" className="rounded-full px-8 py-7 text-base font-bold shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all hover:-translate-y-1">
+              <Button size="lg" onClick={handleBookCall} className="rounded-full px-8 py-7 text-base font-bold shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all hover:-translate-y-1">
                 Get In Touch
               </Button>
-              <Button variant="outline" size="lg" className="rounded-full px-8 py-7 text-base font-bold border-primary/30 hover:bg-primary/5">
+              {/* <Button variant="outline" size="lg" className="rounded-full px-8 py-7 text-base font-bold border-primary/30 hover:bg-primary/5">
                 <Play className="w-4 h-4 mr-2" />
                 Learn More
-              </Button>
+              </Button> */}
             </div>
           </div>
 

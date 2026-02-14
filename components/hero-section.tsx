@@ -1,10 +1,51 @@
 "use client"
 
+import React, { useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 
+// Extend Window interface for Calendly
+declare global {
+  interface Window {
+    Calendly: any;
+  }
+}
+
 export function HeroSection() {
+  // Load Calendly assets
+  useEffect(() => {
+    // Load CSS
+    const link = document.createElement("link")
+    link.href = "https://assets.calendly.com/assets/external/widget.css"
+    link.rel = "stylesheet"
+    document.head.appendChild(link)
+
+    // Load JS
+    const script = document.createElement("script")
+    script.src = "https://assets.calendly.com/assets/external/widget.js"
+    script.async = true
+    document.body.appendChild(script)
+
+    return () => {
+      if (document.head.contains(link)) document.head.removeChild(link)
+      const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]')
+      if (existingScript && document.body.contains(existingScript)) {
+        document.body.removeChild(existingScript)
+      }
+    }
+  }, [])
+
+  const handleBookCall = () => {
+    if (window.Calendly) {
+      window.Calendly.initPopupWidget({
+        url: 'https://calendly.com/inovalogics/30min'
+      });
+    } else {
+      alert("Calendly is still loading. Please try again in a moment.")
+    }
+  }
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-20">
       {/* Background with hero image */}
@@ -39,10 +80,18 @@ export function HeroSection() {
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
 
-              <Button size="lg" variant="outline" className="px-8 py-6 text-base border-primary/50 text-foreground hover:bg-primary/10 rounded-lg">
+              <Button
+                size="lg"
+                variant="outline"
+                className="px-8 py-6 text-base border-primary/50 text-foreground hover:bg-primary/10 rounded-lg"
+                onClick={handleBookCall}
+              >
                 Book a Strategy Call
               </Button>
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-base group rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary/50">
+              <Button size="lg" onClick={() => {
+                const section = document.getElementById("portfolio")
+                section?.scrollIntoView({ behavior: "smooth" })
+              }} className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-base group rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-primary/50">
                 View Our Work
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
