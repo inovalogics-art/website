@@ -1,7 +1,7 @@
 "use client"
 
 
-import React, { useEffect , useState} from "react"
+import React, { useEffect, useState } from "react"
 import {
   CheckCircle,
   Shield,
@@ -18,37 +18,6 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-const features = [
-  {
-    icon: Shield,
-    title: "Enterprise-Grade Security",
-    description: "Secure development practices aligned with modern compliance and data protection standards",
-    color: "from-blue-500/20 to-cyan-500/20",
-    iconColor: "text-blue-500"
-  },
-  {
-    icon: Clock,
-    title: "Reliable Delivery",
-    description: "Structured project planning and execution to ensure predictable timelines",
-    color: "from-purple-500/20 to-pink-500/20",
-    iconColor: "text-purple-500"
-  },
-  {
-    icon: Users,
-    title: "Dedicated Delivery Teams",
-    description: "Skilled engineers, designers, and managers focused on your project goals",
-    color: "from-orange-500/20 to-amber-500/20",
-    iconColor: "text-orange-500"
-  },
-  {
-    icon: TrendingUp,
-    title: "Business-Driven Results",
-    description: "Technology solutions designed to improve efficiency, scalability, and performance",
-    color: "from-emerald-500/20 to-teal-500/20",
-    iconColor: "text-emerald-500"
-  },
-]
-
 const benefits = [
   "Global delivery experience across US, Europe & Middle East",
   "Agile & Scrum-based development approach",
@@ -58,6 +27,22 @@ const benefits = [
   "Ongoing support and maintenance services",
 ]
 
+const awards = [
+  { name: "Top Software Developers 2026", image: "/awards/software_developers.svg" },
+  { name: "2025 Winner Custom Software", image: "/awards/banner_winner_2025_csd_black_bc72e6dd38.webp" },
+  { name: "GoodFirms Research Partner", image: "/awards/goodfirms_research_partner_97cb9601dc.svg" },
+  { name: "Databricks Consulting Partner", image: "/awards/consulting_partner_badge_registered_2x_8370a886e6.webp" },
+  { name: "Best of Clutch Websites 2025", image: "/awards/zb_C97zhw_83a8175232.webp" },
+  { name: "Top Software Developers 2025", image: "/awards/software_developers_ea365cd51d.svg" },
+  { name: "Clutch Global Fall 2024", image: "/awards/clutch_global_61fb4abaaf.webp" },
+  { name: "Clutch Champion Fall 2024", image: "/awards/clutch_champion_53b2d4bddc.webp" },
+  { name: "Top Android App Developers 2024", image: "/awards/Android_f1c59441c4.svg" },
+  { name: "Clutch Asia 2020", image: "/awards/clutch_b2b_883a442d63.webp" },
+  { name: "ISO 27001 Certified", image: "/awards/iso_e06258b80b.webp" },
+  { name: "Zyte Partner", image: "/awards/zyte_ca784a25e4.webp" },
+  { name: "Open edX Partner", image: "/awards/open_edx_ed4352097f.webp" },
+  { name: "AWS Partner", image: "/awards/aws-award.webp" },
+]
 
 const industries = [
   { name: "Enterprise Solutions", desc: "Large-scale systems & platforms", icon: Code, color: "#3B82F6" },
@@ -71,7 +56,7 @@ const industries = [
 
 
 export function AboutSection() {
-   useEffect(() => {
+  useEffect(() => {
     // Load CSS
     const link = document.createElement("link")
     link.href = "https://assets.calendly.com/assets/external/widget.css"
@@ -83,7 +68,7 @@ export function AboutSection() {
     script.src = "https://assets.calendly.com/assets/external/widget.js"
     script.async = true
     document.body.appendChild(script)
-    
+
     return () => {
       if (document.head.contains(link)) document.head.removeChild(link)
       const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]')
@@ -207,38 +192,42 @@ export function AboutSection() {
           </div>
         </div>
 
-        {/* Features Grid with Premium Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-32">
-          {features.map((feature, idx) => (
-            <div
-              key={feature.title}
-              className="group relative overflow-hidden p-8 rounded-2xl bg-card/40 border border-primary/10 hover:border-primary/40 backdrop-blur-md transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl hover:shadow-primary/10 cursor-pointer"
-            >
-              {/* Decorative Background Gradient */}
-              <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${feature.color} blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+        {/* Awards Section */}
+        <div className="mb-32">
+          <div className="text-center mb-16">
+            <h3 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
+              Your Vision, <span className="text-primary">Our Expertise</span>
+            </h3>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              If You Can Imagine It, We Can Build It. Recognized for excellence across global platforms.
+            </p>
+          </div>
 
-              {/* Content */}
-              <div className="relative z-10">
-                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 ring-1 ring-primary/20`}>
-                  <feature.icon className={`w-7 h-7 ${feature.iconColor}`} />
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+            {awards.map((award, idx) => (
+              <div
+                key={idx}
+                className="group relative w-[140px] h-[140px] md:w-[160px] md:h-[160px] rounded-2xl bg-card/30 border border-primary/10 hover:border-primary/30 backdrop-blur-sm transition-all duration-500 flex items-center justify-center p-4 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/5"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
+
+                <div className="relative z-10 w-full h-full flex items-center justify-center">
+                  <img
+                    src={award.image}
+                    alt={award.name}
+                    className="max-w-full max-h-full object-contain filter group-hover:grayscale-0 transition-all duration-500"
+                  />
                 </div>
 
-                <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
-                  {feature.title}
-                </h3>
-
-                <p className="text-sm text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">
-                  {feature.description}
-                </p>
-
-                {/* Hover Indicator */}
-                <div className="mt-6 pt-4 border-t border-primary/10 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="text-xs font-semibold text-primary">Explore</span>
-                  <ArrowRight className="w-4 h-4 text-primary group-hover:translate-x-1 transition-transform" />
+                {/* Tooltip on hover */}
+                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 translate-y-full opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-20">
+                  <div className="bg-popover text-popover-foreground text-[10px] font-bold py-1 px-2 rounded border border-primary/20 whitespace-nowrap shadow-lg">
+                    {award.name}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Enterprise Trust Section */}
@@ -297,7 +286,6 @@ export function AboutSection() {
                             className="w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110"
                             style={{
                               background: `linear-gradient(135deg, ${category.color}25, ${category.color}10)`,
-                              boxShadow: isHovered ? `0 0 20px ${category.color}40` : 'none'
                             }}
                           >
                             <IconComponent

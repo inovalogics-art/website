@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Linkedin, Twitter, Github, Instagram } from "lucide-react"
+import { Linkedin, Twitter, Github, Instagram, Facebook } from "lucide-react"
 import Image from "next/image";
 
 const footerLinks = {
@@ -28,9 +28,11 @@ const footerLinks = {
 
 const socialLinks = [
   { icon: Linkedin, href: "https://www.linkedin.com/in/inova-logics-a554533aa/", label: "LinkedIn" },
-  { icon: Twitter, href: "https://www.linkedin.com/in/inova-logics-a554533aa/", label: "Twitter" },
-  { icon: Github, href: "https://www.linkedin.com/in/inova-logics-a554533aa/", label: "GitHub" },
-  { icon: Instagram, href: "https://www.linkedin.com/in/inova-logics-a554533aa/", label: "Instagram" },
+  { icon: Twitter, href: "https://www.twitter.com/inovalogics", label: "Twitter" },
+  { icon: Github, href: "https://github.com/inovalogics-art", label: "GitHub" },
+  { icon: Instagram, href: "https://www.instagram.com/inovalogics", label: "Instagram" },
+  { icon: Facebook, href: "https://www.facebook.com/inovalogics", label: "Facebook" },
+
 ]
 
 export function Footer() {

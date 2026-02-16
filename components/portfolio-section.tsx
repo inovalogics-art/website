@@ -3,7 +3,7 @@
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { useRef } from "react"
+import { useRef, useEffect, useState } from "react"
 
 const projects = [
   {
@@ -44,9 +44,78 @@ const projects = [
   },
 ];
 
+// Triple the projects for a truly seamless infinite scroll
+const displayProjects = [...projects, ...projects, ...projects,...projects, ...projects, ...projects,...projects, ...projects, ...projects,...projects, ...projects, ...projects,...projects, ...projects, ...projects];
 
 export function PortfolioSection() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const innerContainerRef = useRef<HTMLDivElement>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  useEffect(() => {
+    let animationFrameId: number;
+
+    const updateActiveCard = () => {
+      const container = scrollContainerRef.current;
+      const inner = innerContainerRef.current;
+      if (!container || !inner) return;
+
+      const containerRect = container.getBoundingClientRect();
+      const containerCenter = containerRect.left + containerRect.width / 2;
+
+      let closestIndex = 0;
+      let minDistance = Infinity;
+
+      const cards = inner.querySelectorAll('.project-card');
+      cards.forEach((card, index) => {
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.left + rect.width / 2;
+        const distance = Math.abs(containerCenter - cardCenter);
+
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      setActiveIndex(closestIndex);
+      animationFrameId = requestAnimationFrame(updateActiveCard);
+    };
+
+    animationFrameId = requestAnimationFrame(updateActiveCard);
+
+    return () => {
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Add animation styles for infinite scroll
+    const style = document.createElement("style")
+    style.innerHTML = `
+      @keyframes scroll-portfolio {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-33.33% - 10.66px)); }
+      }
+      .animate-scroll-portfolio {
+        animation: scroll-portfolio 40s linear infinite;
+      }
+      .group:hover .animate-scroll-portfolio {
+        animation-play-state: paused;
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    `
+    document.head.appendChild(style)
+    return () => {
+      if (document.head.contains(style)) document.head.removeChild(style)
+    }
+  }, [])
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
@@ -59,92 +128,120 @@ export function PortfolioSection() {
   }
 
   return (
-    <section id="portfolio" className="py-32">
-      {/* Background elements with animation */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }} />
+    <section id="portfolio" className="py-32 relative overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="max-w-2xl mx-auto text-center mb-20">
-          <span className="text-primary font-semibold text-sm uppercase tracking-wider animate-fade-in-down eye-catching-heading client-badge">Our Work</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6 animate-fade-in-up">
+          <span className="text-primary font-semibold text-sm uppercase tracking-wider eye-catching-heading client-badge">Our Work</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6">
             Enterprise Solutions Delivering Real Results
           </h2>
-          <p className="text-muted-foreground text-lg animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          <p className="text-muted-foreground text-lg">
             Proven track record of transforming businesses with innovative technology solutions
           </p>
         </div>
 
-        {/* Scrollable Container */}
+        {/* Infinite Scrollable Container */}
         <div className="relative group">
-          <div
+          {/* Gradient Fades */}
+
+          <div 
             ref={scrollContainerRef}
-            className="flex overflow-x-auto gap-8 pb-4 scroll-smooth scrollbar-hide"
-            style={{ scrollBehavior: 'smooth' }}
+            className="overflow-x-auto scrollbar-hide py-10"
           >
-            {projects.map((project) => (
-              <div
-                key={project.title}
-                className="group/card relative flex-shrink-0 w-full md:w-[calc(50%-16px)] lg:w-[calc(33.333%-21px)] overflow-hidden rounded-2xl bg-card border border-primary/20 hover:border-primary/60 transition-all duration-300 hover:-translate-y-2 cursor-pointer"
-              >
-                {/* Media Image */}
-                {project.media && (
-                  <div className="h-56 w-full overflow-hidden rounded-t-2xl">
-                    <img
-                      src={project.media}
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/20 flex items-center justify-center opacity-0 group-hover/card:opacity-100 transition-opacity hover:bg-white/30">
-                      <ArrowUpRight className="w-6 h-6 text-white" />
+            <div 
+              ref={innerContainerRef}
+              className="flex gap-8 animate-scroll-portfolio w-max px-[20vw]"
+            >
+              {displayProjects.map((project, idx) => {
+                const isActive = activeIndex === idx
+                
+                return (
+                  <div
+                    key={`${project.title}-${idx}`}
+                    className={`project-card relative flex-shrink-0 w-[320px] md:w-[450px] lg:w-[500px] overflow-hidden rounded-3xl bg-card/50 border transition-all duration-500 cursor-pointer
+                      ${isActive 
+                        ? 'scale-105 border-primary/40 shadow-2xl shadow-primary/10 opacity-100 z-20' 
+                        : 'scale-95 border-primary/10 opacity-50 grayscale-[0.5]'
+                      }
+                    `}
+                  >
+                    {/* Media Image */}
+                    {project.media && (
+                      <div className="h-64 w-full overflow-hidden relative">
+                        <img
+                          src={project.media}
+                          alt={project.title}
+                          className={`w-full h-full object-cover transition-transform duration-700 ${isActive ? 'scale-110' : 'scale-100'}`}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
+                        
+                        <div className="absolute top-6 left-6">
+                          <div className="client-badge-boarderless px-4 py-1.5 rounded-full bg-background/80 backdrop-blur-md border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest">
+                            {project.category}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Content Section */}
+                    <div className="p-8 space-y-6">
+                      <div>
+                        <h3 className={`text-2xl md:text-3xl font-bold mb-3 transition-colors duration-300 ${isActive ? 'text-primary' : 'text-foreground'}`}>
+                          {project.title}
+                        </h3>
+                        <p className="text-muted-foreground leading-relaxed line-clamp-3 text-sm md:text-base">
+                          {project.description}
+                        </p>
+                      </div>
+
+                      <div className={`relative p-5 rounded-2xl bg-primary/5 border transition-all duration-300 ${isActive ? 'border-primary/30' : 'border-primary/10'}`}>
+                        <div className="absolute top-0 left-0 w-1 h-full bg-primary opacity-50" />
+                        <p className="text-[10px] font-bold text-primary uppercase tracking-[0.2em] mb-2">Impact Delivered</p>
+                        <p className="text-foreground font-bold text-lg leading-tight">
+                          {project.result}
+                        </p>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2 pt-2">
+                        {project.tags.map((tag) => (
+                          <span 
+                            key={tag} 
+                            className={`px-3 py-1 text-[10px] font-medium rounded-lg bg-secondary/50 border transition-colors ${isActive ? 'border-primary/20 text-foreground' : 'border-border text-muted-foreground'}`}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                )}
-
-                {/* Content */}
-                <div className="p-8">
-                  <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-3">
-                    {project.category}
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-2">{project.title}</h3>
-                  <p className="text-muted-foreground mb-6 leading-relaxed">{project.description}</p>
-
-                  <div className="bg-muted/40 rounded-lg p-4 mb-6 border border-primary/10">
-                    <p className="text-sm font-semibold text-primary mb-1">Results Achieved</p>
-                    <p className="text-foreground font-bold">{project.result}</p>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary" className="bg-primary/10 text-primary border-primary/20">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
+                )
+              })}
+            </div>
           </div>
 
-          {/* Navigation Buttons */}
-          <Button
-            onClick={() => scroll('left')}
-            size="icon"
-            variant="outline"
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-background border-primary/30 hover:border-primary/60"
-            aria-label="Scroll left"
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </Button>
-          <Button
-            onClick={() => scroll('right')}
-            size="icon"
-            variant="outline"
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-background border-primary/30 hover:border-primary/60"
-            aria-label="Scroll right"
-          >
-            <ChevronRight className="w-4 h-4" />
-          </Button>
+          {/* Navigation Controls */}
+          <div className="flex justify-center gap-4 mt-8">
+            <Button
+              onClick={() => scroll('left')}
+              size="icon"
+              variant="outline"
+              className="w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border-primary/20 hover:border-primary hover:text-white transition-all"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </Button>
+            <Button
+              onClick={() => scroll('right')}
+              size="icon"
+              variant="outline"
+              className="w-12 h-12 rounded-full bg-background/80 backdrop-blur-sm border-primary/20 hover:border-primary hover:text-white transition-all"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </Button>
+          </div>
         </div>
       </div>
     </section>

@@ -6,7 +6,7 @@ import { PortfolioSection } from "@/components/portfolio-section"
 import { VisionSection } from "@/components/vision-section"
 import { NewsletterSection } from "@/components/newsletter-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
-import { VideoTestimonialsSection } from "@/components/video-testimonials-section"
+// import { VideoTestimonialsSection } from "@/components/video-testimonials-section"
 import { ContactSection } from "@/components/contact-section"
 // import { ChatWidget } from "@/components/chat-widget"
 import { Footer } from "@/components/footer"
@@ -21,7 +21,7 @@ export default function HomePage() {
       <PortfolioSection />
       <VisionSection />
       <TestimonialsSection />
-      <VideoTestimonialsSection />
+      {/* <VideoTestimonialsSection /> */}
       <NewsletterSection />
       <ContactSection />
       <Footer />
