@@ -257,7 +257,7 @@ export function ContactSection() {
                 </div>
               </a>
 
-              <a href="tel:+923061161376" className="group flex items-center gap-4 p-5 rounded-2xl border border-border bg-card hover:border-primary/50 transition-all">
+              {/* <a href="tel:+923061161376" className="group flex items-center gap-4 p-5 rounded-2xl border border-border bg-card hover:border-primary/50 transition-all">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
                   <Phone className="w-6 h-6" />
                 </div>
@@ -265,7 +265,7 @@ export function ContactSection() {
                   <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest">Call</p>
                   <p className="font-bold text-sm">+92 (306) 116-1376</p>
                 </div>
-              </a>
+              </a> */}
             </div>
           </div>
         </div>

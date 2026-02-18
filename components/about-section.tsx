@@ -115,7 +115,7 @@ export function AboutSection() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                 </span>
-                <span className="text-xs font-bold tracking-widest uppercase text-primary">About Us</span>
+                <span className="text-xs font-bold tracking-widest uppercase text-primary client-badge-boarderless">About Us</span>
               </div>
 
               <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight text-foreground mb-8 leading-[1.1]">
