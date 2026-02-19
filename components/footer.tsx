@@ -1,70 +1,71 @@
 import Link from "next/link"
-import { Linkedin, Twitter, Github, Instagram, Facebook } from "lucide-react"
-import Image from "next/image";
+import { Linkedin, Github, Instagram, Facebook } from "lucide-react"
+import Image from "next/image"
 
 const footerLinks = {
   services: [
-    { label: "Software Development", href: "#" },
-    { label: "Web & Mobile Apps", href: "#" },
-    { label: "UI/UX Design", href: "#" },
-    { label: "Graphic Design", href: "#" },
+    { label: "Custom Software Development", href: "#services" },
+    { label: "Web & Mobile Applications", href: "#services" },
+    { label: "AI & Automation Solutions", href: "#services" },
+    { label: "System Integration", href: "#services" },
   ],
   company: [
     { label: "About Us", href: "#about" },
-    { label: "Portfolio", href: "#portfolio" },
-  ],
-  resources: [
-    { label: "Case Studies", href: "#" },
-    { label: "Documentation", href: "#" },
-    { label: "Support", href: "#" },
-    { label: "FAQ", href: "#" },
-  ],
-  legal: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
-    { label: "Cookie Policy", href: "#" },
+    { label: "Our Work", href: "#portfolio" },
+    { label: "Services", href: "#services" },
+    { label: "Contact", href: "#contact" },
   ],
 }
 
 const socialLinks = [
   { icon: Linkedin, href: "https://www.linkedin.com/in/inova-logics-a554533aa/", label: "LinkedIn" },
-  { icon: Twitter, href: "https://www.twitter.com/inovalogics", label: "Twitter" },
   { icon: Github, href: "https://github.com/inovalogics-art", label: "GitHub" },
   { icon: Instagram, href: "https://www.instagram.com/inovalogics", label: "Instagram" },
   { icon: Facebook, href: "https://www.facebook.com/inovalogics", label: "Facebook" },
-
 ]
 
 export function Footer() {
   return (
     <footer className="bg-background border-t border-primary/10 relative overflow-hidden">
-      {/* Background accent */}
+
+      {/* soft glow background */}
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
 
-      <div className="container mx-auto px-4 lg:px-8 py-16 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 lg:gap-12">
-          {/* Brand */}
-          <div className="col-span-2">
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="rounded-xl overflow-hidden group-hover:shadow-lg transition-all">
-                <Image
-                  src="/invologics-logo.png"
-                  alt="InovaLogics Logo"
-                  width={185}
-                  height={185}
-                  className="object-contain"
-                />
-              </div>
+      <div className="container mx-auto px-6 lg:px-8 py-20 relative z-10">
+
+        {/* ============ TOP SECTION ============ */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+
+          {/* ===== Brand ===== */}
+          <div className="lg:col-span-2">
+            <Link href="/" className="flex items-center gap-3 mb-6">
+              <Image
+                src="/invologics-logo.png"
+                alt="InovaLogics Logo"
+                width={170}
+                height={170}
+                className="object-contain"
+              />
             </Link>
-            <p className="text-muted-foreground mb-6 max-w-xs">
-              Building digital products that transform businesses. Your trusted partner for software development excellence.
+
+            <h3 className="text-foreground font-semibold text-lg mb-3">
+              Intelligent Software. Scalable Growth.
+            </h3>
+
+            <p className="text-muted-foreground text-sm leading-relaxed max-w-md mb-6">
+              We build custom software, AI-powered systems, and automation solutions
+              that streamline operations, eliminate manual work, and help businesses grow faster.
             </p>
-            <div className="flex gap-4">
+
+            {/* Social Icons */}
+            <div className="flex gap-3">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
-                  className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/80 transition"
                   aria-label={social.label}
                 >
                   <social.icon className="w-5 h-5" />
@@ -73,13 +74,16 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Services */}
+          {/* ===== Services ===== */}
           <div>
             <h4 className="font-semibold text-foreground mb-4">Services</h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2.5">
               {footerLinks.services.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-muted-foreground hover:text-foreground transition-colors text-sm">
+                  <Link
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-foreground transition"
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -87,41 +91,16 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Company */}
+          {/* ===== Company ===== */}
           <div>
             <h4 className="font-semibold text-foreground mb-4">Company</h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2.5">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-muted-foreground hover:text-foreground transition-colors text-sm">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Resources */}
-          {/* <div>
-            <h4 className="font-semibold text-foreground mb-4">Resources</h4>
-            <ul className="space-y-3">
-              {footerLinks.resources.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="text-muted-foreground hover:text-foreground transition-colors text-sm">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div> */}
-
-          {/* Legal */}
-          <div>
-            <h4 className="font-semibold text-foreground mb-4">Legal</h4>
-            <ul className="space-y-3">
-              {footerLinks.legal.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="text-muted-foreground hover:text-foreground transition-colors text-sm">
+                  <Link
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-foreground transition"
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -130,17 +109,15 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Contact Info */}
-        <div className="mt-12 pt-8 border-t border-border">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} InovaLogics Solutions. All rights reserved.
-            </div>
-            <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
-              <span>info@inovalogics.com</span>
-              {/* <span>+92 306 1161376</span> */}
-              {/* <span>Chungi # 6 Multan Pakistan</span> */}
-            </div>
+        {/* ============ BOTTOM BAR ============ */}
+        <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+
+          <span>
+            © {new Date().getFullYear()} InovaLogics Solutions. All rights reserved.
+          </span>
+
+          <div className="flex flex-wrap items-center gap-6">
+            <span>info@inovalogics.com</span>
           </div>
         </div>
       </div>

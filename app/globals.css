@@ -372,7 +372,9 @@
 
     animation: sweepGlow 2.8s linear infinite;
 }
-
+.text-slate-500 {
+  color: lab(42 28.53 -84.86);
+}
 @keyframes sweepGlow {
     0% { left: -120%; }
     100% { left: 120%; }

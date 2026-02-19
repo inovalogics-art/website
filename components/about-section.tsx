@@ -163,7 +163,7 @@ export function AboutSection() {
               {/* Main Image Container */}
               <div className="relative aspect-square rounded-3xl overflow-hidden border border-primary/20 hover:border-primary/40 transition-all duration-500">
                 <img
-                  src="/projects/team-collaboration.jpg"
+                  src="/projects/growth-partner.webp"
                   alt="Team collaboration"
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />

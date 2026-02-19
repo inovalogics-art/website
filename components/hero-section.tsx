@@ -66,16 +66,17 @@ export function HeroSection() {
           <div className="text-left">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-6 animate-fade-in-down">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-sm text-primary font-medium client-badge-boarderless">Trusted by Enterprises & Growing Businesses</span>
+              <span className="text-sm text-primary font-medium client-badge-boarderless">Technology Partner Behind High-Growth Companies</span>
             </div>
 
             <h1 className="text-5xl md:text-6xl font-bold text-foreground leading-tight mb-6 animate-fade-in-up">
-              Enterprise Software & AI Solutions Built to<span className="text-primary"> Scale</span> Your Business
+              Custom Software & AI That <span className="text-primary">Accelerates</span> Your  <span className="text-primary"> Business</span> Growth
 
             </h1>
 
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-xl animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              We help growth-focused companies automate operations, increase revenue, and dominate their markets with custom software, AI systems, and smart automation.
+
+              We don't just build software. we build systems that think. From custom development to seamless process automation, Inovalogics empowers your business to scale without the overhead
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>

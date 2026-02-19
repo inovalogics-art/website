@@ -50,7 +50,7 @@ export function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium relative group"
+                className="text-muted-foreground hover:text-primary transition-colors text-2xl font-medium relative group"
               >
                 {link.label}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />

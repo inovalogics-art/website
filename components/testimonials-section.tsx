@@ -107,7 +107,7 @@ export function TestimonialsSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   return (
-    <section id="testimonials" className="py-32">
+    <section id="testimonials" className="pt-20">
       {/* Premium Background Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Animated gradient orbs */}

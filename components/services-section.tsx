@@ -31,6 +31,7 @@ import {
 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { text } from "stream/consumers"
 
 // ============================================
 // LAYOUT CONFIGURATION - CHANGE THIS VALUE
@@ -54,7 +55,7 @@ const services = [
     iconBg: "bg-blue-500/20",
     image: "/projects/ai-web.png",
     bgPosition: "object-cover",
-    stats: "500+ Projects"
+    stats: "100+ Projects"
   },
   {
     icon: Smartphone,
@@ -71,7 +72,7 @@ const services = [
     iconBg: "bg-purple-500/20",
     image: "/projects/saas.png",
     bgPosition: "object-cover",
-    stats: "50+ SaaS Platforms"
+    stats: "20+ SaaS Platforms"
   },
   {
     icon: Palette,
@@ -88,7 +89,7 @@ const services = [
     iconBg: "bg-amber-500/20",
     image: "/projects/ai-automation.png",
     bgPosition: "object-cover",
-    stats: "1000+ Workflows"
+    stats: "250+ Workflows"
   },
   {
     icon: Zap,
@@ -105,7 +106,7 @@ const services = [
     iconBg: "bg-emerald-500/20",
     image: "/projects/crm-expert.png",
     bgPosition: "object-cover",
-    stats: "200+ Agencies"
+    stats: "50+ Agencies"
   },
 ]
 
@@ -144,7 +145,7 @@ const StaggeredLayout = ({ services, handleBookCall }: any) => (
           </Button>
         </div>
         <div className="group flex-1 rounded-2xl overflow-hidden shadow-2xl">
-          <img src={service.image} alt={service.title} className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-700" onClick={handleBookCall}/>
+          <img src={service.image} alt={service.title} className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-700" onClick={handleBookCall} />
         </div>
       </div>
     ))}
@@ -302,7 +303,7 @@ const GeometricLayout = ({ services, handleBookCall }: any) => (
       >
         <Card className={`overflow-hidden bg-card/60 border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 h-full hover:shadow-xl hover:shadow-blue-500/10 ${index % 4 === 0 ? 'rounded-3xl' : 'rounded-2xl'}`}>
           <div className={`overflow-hidden ${index % 4 === 0 ? 'h-96' : 'h-48'}`}>
-            <img src={service.image} alt={service.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" onClick={handleBookCall}/>
+            <img src={service.image} alt={service.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" onClick={handleBookCall} />
           </div>
           <CardContent className={`p-6 ${index % 4 === 0 ? 'p-8' : ''}`}>
             <h3 className={`font-bold text-foreground mb-2 ${index % 4 === 0 ? 'text-2xl' : 'text-lg'}`}>{service.title}</h3>
@@ -420,15 +421,15 @@ export function ServicesSection() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-400"></span>
             </span>
-            <span className="text-xs font-semibold tracking-wider uppercase text-blue-400">Our Services</span>
+            <span className="text-xs font-semibold tracking-wider uppercase text-blue-400 client-badge-boarderless">Our Services</span>
           </div>
 
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-6 leading-tight">
-            Comprehensive IT Solutions for Modern Businesses
+            Intelligent Technology Solutions Built for <span className="text-primary">Growth</span>
           </h2>
 
           <p className="text-lg text-muted-foreground mb-4 leading-relaxed max-w-2xl mx-auto">
-            From strategy and design to development and optimization, we deliver comprehensive IT services that enable scalable and secure digital transformation.
+            From custom software and AI-driven automation to seamless system integration, we design and deliver scalable digital solutions that streamline operations, boost efficiency, and accelerate your business success.
           </p>
 
           {/* <p className="text-sm text-muted-foreground/60 italic">
@@ -440,28 +441,89 @@ export function ServicesSection() {
         {renderLayout()}
 
         {/* Value Propositions */}
-        <div className="relative rounded-2xl p-12 md:p-16 overflow-hidden border border-slate-700/50 bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-xl mt-24">
-          <div className="absolute -top-32 -right-32 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl" />
-          <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl" />
+       <div className="relative mt-40 mb-40 px-6 max-w-7xl mx-auto overflow-visible">
+  {/* Background Structural Graphics */}
+  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/[0.03] rounded-full pointer-events-none" />
+  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-white/[0.05] rounded-full pointer-events-none" />
 
-          <div className="relative z-10">
-            <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-12 text-center">
-              Why Choose Inova Logics
-            </h3>
+  <div className="relative z-10 flex flex-col items-center">
+    
+    {/* Central Heading Anchor */}
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-20 hidden lg:block">
+      <div className="space-y-2 bg-[#02040a]/80 backdrop-blur-md p-8 rounded-full border border-white/5">
+        <h3 className="text-5xl font-black text-white leading-none tracking-tighter">
+          Inova<span className="text-slate-500">Logics</span>
+        </h3>
+        <div className="flex items-center justify-center gap-2">
+            <div className="h-[1px] w-8 bg-blue-500/50" />
+            <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-blue-400">Excellence</span>
+            <div className="h-[1px] w-8 bg-blue-500/50" />
+        </div>
+      </div>
+    </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {valueProps.map((prop) => (
-                <div key={prop.title} className="p-6 rounded-xl border border-slate-700/50 hover:border-blue-500/50 bg-background/40 hover:bg-background/60 transition-all duration-300 group">
-                  <div className="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center mb-4 group-hover:bg-blue-500/30 transition-colors">
-                    <prop.icon className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <h4 className="font-bold text-foreground mb-2 text-sm group-hover:text-blue-400 transition-colors">{prop.title}</h4>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{prop.desc}</p>
-                </div>
-              ))}
+    {/* Responsive Heading for Mobile/Tablet */}
+    <div className="lg:hidden text-center mb-16">
+       <h3 className="text-5xl font-black text-white leading-none tracking-tighter mb-4">
+          Inova<span className="text-slate-500">Logics</span>
+       </h3>
+       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/20 bg-blue-500/5">
+        <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-blue-400">Why Us</span>
+      </div>
+    </div>
+
+    {/* Orbiting Feature Grid */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-64 gap-y-12 w-full max-w-6xl">
+      {valueProps.map((prop, index) => (
+        <div 
+          key={prop.title} 
+          className={`group relative p-10 rounded-3xl transition-all duration-700
+            ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}
+            ${index === 0 ? 'lg:-translate-y-12' : ''}
+            ${index === 1 ? 'lg:-translate-y-12' : ''}
+            ${index === 2 ? 'lg:translate-y-12' : ''}
+            ${index === 3 ? 'lg:translate-y-12' : ''}
+            bg-[#030e21] border border-white/5 hover:border-blue-500/20 hover:shadow-[0_0_50px_rgba(59,130,246,0.1)]`}
+        >
+          {/* Visual Accents */}
+          <div style={{borderColor: '#00a8ff'}} className={`absolute top-0 ${index % 2 === 0 ? 'right-0' : 'left-0'} w-12 h-12 border-t ${index % 2 === 0 ? 'border-r' : 'border-l'} border-white/10 rounded-tr-3xl rounded-tl-3xl group-hover:border-blue-500/40 transition-colors duration-500`} />
+          
+          {/* Index Number */}
+          <span style={{textAlign:'left', color:'#00a8ff'}} className="block text-5xl font-black text-white/[0.03] mb-6 group-hover:text-blue-500/10 transition-colors duration-500">
+            0{index + 1}
+          </span>
+
+          {/* Icon Container */}
+          <div className={`flex ${index % 2 === 0 ? 'lg:justify-end' : 'lg:justify-end'} mb-8`}>
+            <div className="w-14 h-14 flex items-center justify-center bg-[#0f172a] border border-white/10 rounded-2xl group-hover:scale-110 group-hover:border-blue-500/30 transition-all duration-500">
+              <prop.icon className="w-6 h-6 text-blue-400/80 group-hover:text-blue-400" />
             </div>
           </div>
+
+          {/* Content Text */}
+          <div className="space-y-4">
+            <h4 className="text-2xl font-bold text-white tracking-tight group-hover:text-blue-400 transition-colors">
+              {prop.title}
+            </h4>
+            <p className="text-sm text-slate-400 leading-relaxed font-medium group-hover:text-slate-300 transition-colors max-w-xs inline-block">
+              {prop.desc}
+            </p>
+          </div>
+
+          {/* Hover Radial Glow */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.05),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-3xl" />
         </div>
+      ))}
+    </div>
+  </div>
+
+  {/* Connection Lines (Desktop Only) */}
+  <div className="absolute inset-0 pointer-events-none hidden lg:block">
+    <div className="absolute top-1/2 left-[30%] w-[15%] h-[1px] bg-gradient-to-r from-transparent to-white/10" />
+    <div className="absolute top-1/2 right-[30%] w-[15%] h-[1px] bg-gradient-to-l from-transparent to-white/10" />
+  </div>
+</div>
+
 
         {/* CTA */}
         <div className="max-w-3xl mx-auto text-center mt-24">

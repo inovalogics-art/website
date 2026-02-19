@@ -45,7 +45,7 @@ const projects = [
 ];
 
 // Triple the projects for a truly seamless infinite scroll
-const displayProjects = [...projects, ...projects, ...projects,...projects, ...projects, ...projects,...projects, ...projects, ...projects,...projects, ...projects, ...projects,...projects, ...projects, ...projects];
+const displayProjects = [...projects, ...projects, ...projects, ...projects, ...projects, ...projects, ...projects, ...projects, ...projects, ...projects, ...projects, ...projects, ...projects, ...projects, ...projects];
 
 export function PortfolioSection() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -128,7 +128,7 @@ export function PortfolioSection() {
   }
 
   return (
-    <section id="portfolio" className="py-32 relative overflow-hidden">
+    <section id="portfolio" className="relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
@@ -137,7 +137,7 @@ export function PortfolioSection() {
         <div className="max-w-2xl mx-auto text-center mb-20">
           <span className="text-primary font-semibold text-sm uppercase tracking-wider eye-catching-heading client-badge">Our Work</span>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6">
-            Enterprise Solutions Delivering Real Results
+            Helping Businesses Work Smarter and Grow Faster
           </h2>
           <p className="text-muted-foreground text-lg">
             Proven track record of transforming businesses with innovative technology solutions
@@ -148,23 +148,23 @@ export function PortfolioSection() {
         <div className="relative group">
           {/* Gradient Fades */}
 
-          <div 
+          <div
             ref={scrollContainerRef}
             className="overflow-x-auto scrollbar-hide py-10"
           >
-            <div 
+            <div
               ref={innerContainerRef}
               className="flex gap-8 animate-scroll-portfolio w-max px-[20vw]"
             >
               {displayProjects.map((project, idx) => {
                 const isActive = activeIndex === idx
-                
+
                 return (
                   <div
                     key={`${project.title}-${idx}`}
                     className={`project-card relative flex-shrink-0 w-[320px] md:w-[450px] lg:w-[500px] overflow-hidden rounded-3xl bg-card/50 border transition-all duration-500 cursor-pointer
-                      ${isActive 
-                        ? 'scale-105 border-primary/40 shadow-2xl shadow-primary/10 opacity-100 z-20' 
+                      ${isActive
+                        ? 'scale-105 border-primary/40 shadow-2xl shadow-primary/10 opacity-100 z-20'
                         : 'scale-95 border-primary/10 opacity-50 grayscale-[0.5]'
                       }
                     `}
@@ -178,7 +178,7 @@ export function PortfolioSection() {
                           className={`w-full h-full object-cover transition-transform duration-700 ${isActive ? 'scale-110' : 'scale-100'}`}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
-                        
+
                         <div className="absolute top-6 left-6">
                           <div className="client-badge-boarderless px-4 py-1.5 rounded-full bg-background/80 backdrop-blur-md border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest">
                             {project.category}
@@ -208,8 +208,8 @@ export function PortfolioSection() {
 
                       <div className="flex flex-wrap gap-2 pt-2">
                         {project.tags.map((tag) => (
-                          <span 
-                            key={tag} 
+                          <span
+                            key={tag}
                             className={`px-3 py-1 text-[10px] font-medium rounded-lg bg-secondary/50 border transition-colors ${isActive ? 'border-primary/20 text-foreground' : 'border-border text-muted-foreground'}`}
                           >
                             {tag}
