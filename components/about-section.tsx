@@ -109,23 +109,6 @@ export function AboutSection() {
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-32">
           {/* Left Content */}
           <div className="space-y-8 animate-in fade-in slide-in-from-left-8 duration-1000">
-            <div>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-md mb-6">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                </span>
-                <span className="text-xs font-bold tracking-widest uppercase text-primary client-badge-boarderless">About Us</span>
-              </div>
-
-              <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight text-foreground mb-8 leading-[1.1]">
-                Your Long-Term Technology  <span className="relative inline-block">
-                  <span className="relative z-10 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">Growth Partner</span>
-                  <span className="absolute bottom-2 left-0 w-full h-3 bg-primary/10 -rotate-1 -z-0"></span>
-                </span>
-              </h2>
-            </div>
-
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl">
               Technology should accelerate growth — not slow it down.
             </p>
@@ -231,94 +214,148 @@ export function AboutSection() {
         </div>
 
         {/* Enterprise Trust Section */}
-        <div className="relative rounded-3xl p-12 md:p-20 overflow-hidden border border-primary/10 bg-card/30 backdrop-blur-xl mb-32">
-          {/* Decorative background */}
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_0%_0%,hsl(var(--primary)/0.05)_0%,transparent_50%)]" />
-          <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_100%_100%,hsl(var(--primary)/0.05)_0%,transparent_50%)]" />
+      <div className="relative w-full py-32 px-6 md:px-12 overflow-hidden bg-[#000000] selection:bg-primary/30">
+  {/* High-Impact Mesh Gradient Background */}
+  <div className="absolute inset-0 -z-10 overflow-hidden">
+    <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 rounded-full blur-[120px] animate-pulse" />
+    <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-600/10 rounded-full blur-[150px] animate-pulse" style={{ animationDelay: '2s' }} />
+    
+    {/* Animated Liquid Waves at Bottom */}
+    <div className="absolute bottom-0 left-0 w-full h-64 overflow-hidden">
+      <div className="absolute bottom-[-50px] left-[-10%] w-[120%] h-48 bg-gradient-to-t from-primary/20 via-primary/5 to-transparent blur-[60px] transform -rotate-2 animate-[wave_10s_ease-in-out_infinite]" />
+      <div className="absolute bottom-[-30px] left-[-10%] w-[120%] h-32 bg-gradient-to-t from-blue-500/20 via-blue-500/5 to-transparent blur-[40px] transform rotate-1 animate-[wave_7s_ease-in-out_infinite_reverse]" />
+    </div>
+  </div>
 
-          <div className="relative z-10">
-            {/* Header */}
-            <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
-              <p className="text-primary font-bold text-xs uppercase tracking-[0.3em] mb-4 eye-catching-heading client-badge">Trusted by Leaders</p>
-              <h3 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
-                Trusted by Businesses Across <span className="text-primary">Industries</span>
-              </h3>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                From established enterprises to fast-growing SMEs, organizations across multiple industries rely on us to deliver secure, scalable, and high-quality digital solutions.
-              </p>
-            </div>
-
-
-
-            {/* Industries Grid - Enhanced with Glassmorphism */}
-            <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4 mb-20">
-              {industries.map((category, idx) => {
-                const IconComponent = category.icon
-                const isHovered = hoveredIndustry === category.name
-
-                return (
-                  <div
-                    key={category.name}
-                    onMouseEnter={() => setHoveredIndustry(category.name)}
-                    onMouseLeave={() => setHoveredIndustry(null)}
-                    className="group relative h-full"
-                  >
-                    {/* Glow effect on hover */}
-                    <div
-                      className={`absolute inset-0 rounded-2xl bg-gradient-to-br opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500 -z-10`}
-                      style={{
-                        background: `linear-gradient(135deg, ${category.color}40, ${category.color}20)`,
-                      }}
-                    />
-
-                    {/* Main Card */}
-                    <div className="relative p-6 h-full rounded-2xl bg-gradient-to-br from-card/80 to-card/40 border border-primary/20 hover:border-primary/60 backdrop-blur-xl transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl cursor-pointer group overflow-hidden">
-                      {/* Animated background gradient */}
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{
-                        background: `radial-gradient(circle at top right, ${category.color}15, transparent 70%)`
-                      }} />
-
-                      {/* Content */}
-                      <div className="relative z-10 flex flex-col h-full">
-                        {/* Icon Container with Glow */}
-                        <div className="relative mb-4">
-                          <div
-                            className="w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110"
-                            style={{
-                              background: `linear-gradient(135deg, ${category.color}25, ${category.color}10)`,
-                            }}
-                          >
-                            <IconComponent
-                              className="w-7 h-7 transition-all duration-500 group-hover:animate-pulse"
-                              style={{ color: category.color }}
-                            />
-                          </div>
-                        </div>
-
-                        {/* Text Content */}
-                        <p className="font-bold text-foreground mb-2 text-sm leading-tight group-hover:text-primary transition-colors duration-300">
-                          {category.name}
-                        </p>
-                        <p className="text-xs text-muted-foreground group-hover:text-foreground transition-colors flex-grow">
-                          {category.desc}
-                        </p>
-
-                        {/* Animated Divider */}
-                        <div className="mt-4 pt-4 border-t border-primary/20 group-hover:border-primary/50 transition-colors">
-                          <div className="flex justify-center gap-1">
-                            <div className="w-1.5 h-1.5 bg-primary rounded-full group-hover:scale-150 group-hover:animate-pulse transition-all" />
-                            <div className="w-1.5 h-1.5 bg-primary/50 rounded-full group-hover:scale-125 transition-all" style={{ animationDelay: '0.1s' }} />
-                            <div className="w-1.5 h-1.5 bg-primary/30 rounded-full group-hover:scale-100 transition-all" style={{ animationDelay: '0.2s' }} />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
+  <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20 lg:gap-32">
+    
+    {/* Left Side: Cinematic Branding & Content */}
+    <div className="lg:w-[45%] space-y-10 z-20">
+      <div className="relative group">
+        <div className="flex items-baseline gap-0">
+          <span className="text-[160px] md:text-[220px] font-black text-transparent bg-clip-text bg-gradient-to-b from-primary via-primary/80 to-blue-600 leading-[0.7] tracking-tighter drop-shadow-[0_0_30px_rgba(var(--primary),0.3)]">O</span>
+          <div className="flex flex-col -ml-4 md:-ml-8">
+            <span className="text-4xl md:text-6xl font-black text-primary leading-none mb-3">ur</span>
+            <h3 className="text-6xl md:text-8xl font-black text-white leading-[0.8] tracking-tighter">
+              Stories Of  
+Success
+            </h3>
           </div>
         </div>
+      </div>
+
+      <div className="space-y-8">
+        <p className="text-xl md:text-2xl font-bold text-white/90 leading-tight">
+          Trusted by Businesses Across <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">Global Industries</span>
+        </p>
+        <p className="text-lg text-slate-400 max-w-lg leading-relaxed font-medium border-l-2 border-primary/30 pl-6">
+          We engineer high-performance digital ecosystems for enterprises that demand precision, security, and scalable growth.
+        </p>
+      </div>
+
+      {/* <button className="relative px-10 py-5 rounded-2xl bg-primary text-white font-bold overflow-hidden group transition-all duration-500 hover:scale-105 hover:shadow-[0_20px_50px_rgba(var(--primary),0.4)]">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+        <span className="relative z-10 flex items-center gap-3">
+          Initialize Partnership
+          <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </span>
+      </button> */}
+    </div>
+
+    {/* Right Side: The IT-Core & Industry Nebula */}
+    <div className="lg:w-[55%] relative flex justify-center items-center py-24 lg:py-0">
+      
+      {/* Central Portrait Anchor with Glow */}
+      <div className="relative w-80 h-80 md:w-[460px] md:h-[460px]">
+        {/* Pulsing Core Glow */}
+        <div className="absolute inset-0 rounded-full bg-primary/20 blur-[100px] animate-pulse" />
+        
+        {/* Floating Structural Rings */}
+        <div className="absolute inset-[-40px] rounded-full border border-white/5 scale-110 animate-[spin_50s_linear_infinite]" />
+        <div className="absolute inset-[-80px] rounded-full border border-dashed border-primary/10 scale-125 animate-[spin_80s_linear_infinite_reverse]" />
+        
+        {/* High-End Professional Portrait */}
+        <div className="relative w-full h-full rounded-full border-[1px] border-white/20 p-4 backdrop-blur-3xl z-10">
+          <div className="w-full h-full rounded-full overflow-hidden border-[8px] border-[#020617] shadow-2xl">
+            <img 
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1000" 
+              alt="IT Strategic Leader" 
+              className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700"
+            />
+          </div>
+        </div>
+
+        {/* Industry Nodes (Orbiting Layout ) */}
+        {industries.map((industry, idx) => {
+          const Icon = industry.icon;
+          const angle = (idx * 60 - 30) * (Math.PI / 180);
+          const radius = 280;
+          const x = Math.cos(angle) * radius;
+          const y = Math.sin(angle) * radius;
+
+          return (
+            <div 
+              key={industry.name}
+              className="absolute z-20 group"
+              style={{ 
+                left: `calc(50% + ${x}px)`, 
+                top: `calc(50% + ${y}px)`,
+                transform: 'translate(-50%, -50%)'
+              }}
+            >
+              <div className="relative p-5 rounded-2xl bg-white/[0.03] backdrop-blur-2xl border border-white/10 hover:border-primary/40 transition-all duration-500 hover:-translate-y-3 w-52 group-hover:bg-white/[0.07] group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]">
+                {/* Node Accent */}
+                <div 
+                  className="absolute top-0 left-0 w-full h-1 rounded-t-2xl opacity-50 group-hover:opacity-100 transition-opacity"
+                  style={{ backgroundColor: industry.color }}
+                />
+                
+                <div className="flex items-center gap-4 mb-3">
+                  <div 
+                    className="w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-500 group-hover:rotate-[360deg]"
+                    style={{ background: `${industry.color}20`, border: `1px solid ${industry.color}40` }}
+                  >
+                    <Icon className="w-5 h-5" style={{ color: industry.color }} />
+                  </div>
+                  <p className="text-[12px] font-black text-white leading-tight tracking-tight">{industry.name}</p>
+                </div>
+                
+                <p className="text-[10px] text-slate-400 font-medium leading-relaxed group-hover:text-slate-200 transition-colors">
+                  {industry.desc}
+                </p>
+
+                {/* Connection Beam */}
+                <div 
+                  className="absolute -z-10 w-24 h-[1px] opacity-0 group-hover:opacity-20 transition-opacity duration-500"
+                  style={{ 
+                    background: `linear-gradient(to ${x > 0 ? 'left' : 'right'}, ${industry.color}, transparent)`,
+                    left: x > 0 ? '-90px' : 'auto',
+                    right: x < 0 ? '-90px' : 'auto',
+                    top: '50%'
+                  }}
+                />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+
+  <style dangerouslySetInnerHTML={{ __html: `
+    @keyframes wave {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-20px) rotate(-1deg); }
+    }
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  `}} />
+</div>
+
       </div>
     </section>
   )
